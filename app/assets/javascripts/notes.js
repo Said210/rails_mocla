@@ -78,10 +78,7 @@ $(document).on('ready', function () {
 		resize_handler();
 	});
 
-	$('li.activable').on('click', function () {
-
-		$(this).toggleClass('active');
-	});
+	$('li.activable').on('click', function () { $(this).toggleClass('active') });
 
 	$('#toolbar .nav-left-btn').hover(function () { toolbar_nav_left() },
 		function () { clearInterval(repeat_toolbar_nav) });
