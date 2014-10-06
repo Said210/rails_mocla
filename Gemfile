@@ -18,7 +18,7 @@ gem 'foundation-rails'
 # Use Foundation icon fonts
 gem 'foundation-icons-sass-rails'
 # Use Awesome fonts!
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
