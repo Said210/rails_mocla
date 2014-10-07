@@ -1,3 +1,5 @@
+@import '../application';
+
 $primary-theme-color: #4d657a;
 $dark-theme: if(lightness($primary-theme-color) > 65%, false, true);
 $text-color: if($dark-theme, #FFF, #222);
