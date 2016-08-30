@@ -7,4 +7,7 @@ layout "notes/editor", :only =>[:editor]
 
   def editor
   end
+  
+  def base
+  end
 end

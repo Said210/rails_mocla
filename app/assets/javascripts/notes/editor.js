@@ -86,3 +86,15 @@ $(document).on('ready', function () {
 	$('#toolbar .nav-right-btn').hover(function () { toolbar_nav_right() },
 		function () { clearInterval(repeat_toolbar_nav) });
 });
+
+function paper_type (json) {
+		var paperType=json.characteristics[0].paperType;
+	    if(paperType!='plain'){
+	      if(paperType=='lined'){
+	        richTextField.document.body.style.backgroundImage="url('http://bgfons.com/upload/notebook_texture2459.jpg')";
+	      }
+	      if(paperType=='striped'){
+	        richTextField.document.body.style.backgroundImage="url('http://3.bp.blogspot.com/-vcN-JgD6_IU/UECyfV7FrTI/AAAAAAAABmw/b1CgZcPZdYw/s1600/cuadricula.gif')";
+	      }
+	    }
+	}

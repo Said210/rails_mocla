@@ -1,4 +1,24 @@
 - title 'Física III'
+javascript:
+  var rtd=false;
+  var preCharacteristics='{"characteristics": ['+
+  '{"paperType":"striped",'+
+  ' "editable": true }'
+  +']}';
+  var characteristics=JSON.parse(preCharacteristics);
+  var ready;
+  ready = function() {
+    if(!rtd){
+      rtd=true;
+      if(characteristics.characteristics[0].editable){
+        setTimeout(function(){iframe_on();}, 4000);
+      }
+      setTimeout(function(){paper_type(characteristics);}, 5000);
+    }
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
 
 .topbar
   .informationbar
@@ -18,44 +38,48 @@
     .topbar-wrapper
       span.arrow
       ul.tools
-      	<li><i class="fa fa-undo"></i>
-        <li><i class="fa fa-repeat"></i>
+      	<li onclick="undo()" ><i class="fa fa-undo"></i>
+        <li onclick="redo()" ><i class="fa fa-repeat"></i>
         <li class="spacer">
-        <li class="activable"><i class="fi-bold"></i>
-        <li class="activable"><i class="fi-italic"></i>
-        <li class="activable"><i class="fi-underline"></i>
+        <li class="activable" onclick="bold()"><i class="fi-bold"></i>
+        <li class="activable" onclick="italic"><i class="fi-italic"></i>
+        <li class="activable" onclick="underline()"><i class="fi-underline"></i>
         <li class="spacer">
-        <li class="activable"><i class="fi-align-left"></i>
-        <li class="activable"><i class="fi-align-center"></i>
-        <li class="activable"><i class="fi-align-right"></i>
-        <li class="activable"><i class="fi-align-justify"></i>
+        <li class="activable" onclick="left()"><i class="fi-align-left"></i>
+        <li class="activable" onclick="center()"><i class="fi-align-center"></i>
+        <li class="activable" onclick="right()"><i class="fi-align-right"></i>
+        <li class="activable" onclick="justify()"><i class="fi-align-justify"></i>
         <li class="spacer">
         <li><i class="fi-minus"></i>
         <li><i class="fi-plus"></i>
         <li class="dropdown"><i class="fa fa-caret-down"></i><ul>
-        	li.activable Título
-        	li.activable Subtítulo
-        	li.activable Cuerpo
-        	li.activable Cita
+        	li.activable[onclick="set_size(6); center()"] Título
+        	li.activable[onclick="set_size(5); bold()"] Subtítulo
+        	li.activable[onclick="set_size(3)"] Cuerpo
+        	li.activable[onclick="set_size(3); italic()"] Cita
         </ul>
         <li class="spacer">
-        <li><i class="fi-text-color"></i>
-        <li><i class="fi-background-color"></i>
+        <li><i class="fi-text-color" onclick="forecolor()"></i>
+        <li><i class="fi-background-color" onclick="backcolor()"></i>
         <li class="spacer">
-        <li class="activable"><i class="fa fa-list-ul"></i>
-        <li class="activable"><i class="fa fa-list-ol"></i>
+        <li class="activable" onclick="unordered_list()"><i class="fa fa-list-ul"></i>
+        <li class="activable" onclick="ordered_list()"><i class="fa fa-list-ol"></i>
         <li class="spacer">
-        <li><i class="fa fa-link fa-flip-horizontal"></i>
-        <li><i class="fi-unlink"></i>
+        <li onclick="link()" ><i class="fa fa-link fa-flip-horizontal"></i>
+        <li onclick="unlink()" ><i class="fi-unlink"></i>
         <li class="spacer">
-        <li><i class="fa fa-th"></i>
-        <li><i class="fa fa-table"></i>
+        <li onclick="create_table()" ><i class="fa fa-th"></i>
+        <li onclick="create_table_with_header()"><i class="fa fa-table"></i>
         <li class="spacer">
-        <li><i class="fi-photo"></i>
-        <li><i class="fi-print"></i>
+        <li onclick="image()"><i class="fi-photo"></i>
+        <li onclick="print_document()"><i class="fi-print"></i>
 .page-container
   .page-wrapper
-    .page
-      h1 Ley de Coulomb
-      p
-        | La magnitud de cada una de las fuerzas eléctricas con que interactúan dos cargas puntuales en reposo es directamente proporcional al producto de la magnitud de ambas cargas e inversamente proporcional al cuadrado de la distancia que las separa y tiene la dirección de la línea que las une. La fuerza es de repulsión si las cargas son de igual signo, y de atracción si son de signo contrario.
+    iframe src="/notes/base" name="richTextField" id="richTextField" class="page" style="display:block" frameborder="0"
+    form#submit_form style="opacity:0"
+      textarea name="textArea"
+      input type="text" name="jason" id="jason"
+
+.hidden
+  <input type="color" id="iForeColor" onchange="changeF()">
+  <input type="color" id="iBackColor" onchange="changeB()">
